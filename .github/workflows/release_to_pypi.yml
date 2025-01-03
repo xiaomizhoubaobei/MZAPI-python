@@ -58,10 +58,11 @@ jobs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         packages-dir: dist/
+        user: __token__
+        password: ${{ secrets.PYPI_TOKEN }}
 
     - name: Create GitHub release
       uses: softprops/action-gh-release@v2
-      if: startsWith(github.ref, 'refs/heads/1')  # 根据实际情况调整分支名
       with:
           tag_name: v${{ env.version }}
           name: Release v${{ env.version }}
