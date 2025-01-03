@@ -3,7 +3,7 @@ name: 上传Python包
 on:
   push:
     branches:
-      - 1  # 确保这是您想要触发的分支名称
+      - master # 确保这是您想要触发的分支名称
 
 permissions:
   contents: read
