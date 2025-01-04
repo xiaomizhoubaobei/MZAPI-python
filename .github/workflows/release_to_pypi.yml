@@ -87,6 +87,11 @@ jobs:
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
+    - name: 接受 GitCode 主机密钥
+      run: |
+        echo -e "Host gitcode.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+        ssh-keyscan gitcode.com >> ~/.ssh/known_hosts
+
     - name: 配置Git用户信息（Gitcode）
       run: |
         git config --global user.name "xiaomizhou"
@@ -111,6 +116,11 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: 接受 GitCode 主机密钥
+      run: |
+        echo -e "Host gitee.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+        ssh-keyscan gitee.com >> ~/.ssh/known_hosts
 
     - name: 配置Git用户信息（Gitee）
       run: |
