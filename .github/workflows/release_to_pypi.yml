@@ -1,9 +1,9 @@
-name: 发布包到pypi和Github
+name: 发布包到pypi和Github并同步到Gitee和Gitcode
 
 on:
   push:
     branches:
-      - master # 确保这是您想要触发的分支名称
+      - master
 
 permissions:
   contents: read
@@ -16,7 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - uses: actions/setup-python@v5
+    - name: 设置Python环境
+      uses: actions/setup-python@v5
       with:
         python-version: '3.x'
 
@@ -49,7 +50,6 @@ jobs:
     - name: 提取版本号
       id: extract_version
       run: |
-        # 假设 dist/ 目录下有一个文件名格式为 MZAPI-版本号-py3-none-any.whl
         filename=$(ls dist/MZAPI-*.whl)
         version=$(echo $filename | sed -e 's/.*-\([0-9]*\.[0-9]*\.[0-9]*\)-py3-none-any\.whl/\1/')
         echo "version=$version" >> $GITHUB_ENV
@@ -58,8 +58,6 @@ jobs:
       uses: pypa/gh-action-pypi-publish@release/v1
       with:
         packages-dir: dist/
-        user: __token__
-        password: ${{ secrets.PYPI_TOKEN }}
 
     - name: Create GitHub release
       uses: softprops/action-gh-release@v2
@@ -68,11 +66,63 @@ jobs:
           name: Release v${{ env.version }}
           body: |
             🎉 发布新版本${{ env.version }} 🎉
-            
+
             这是我们新版本${{ env.version }}的发布说明。本次发布包含了以下更改：
-            
+
             ${{ github.event.head_commit.message }}！
           files: |
             dist/*.whl
             dist/*.tar.gz
-          token: ${{ secrets.TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  sync-to-gitcode:
+    runs-on: ubuntu-latest
+    needs: release-build
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: 设置SSH密钥（Gitcode）
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: 配置Git用户信息（Gitcode）
+      run: |
+        git config --global user.name "xiaomizhou"
+        git config --global user.email "qixiaoxin@stu.sqxy.edu.cn"
+
+    - name: 添加Gitcode远程仓库
+      run: |
+        git commit -m "${{ github.event.head_commit.message }}!"
+        git remote add gitcode git@gitcode.com:xiaomizhou/MZAPI-python.git
+
+    - name: 同步代码到Gitcode
+      run: |
+        git push gitcode master
+
+  sync-to-gitee:
+    runs-on: ubuntu-latest
+    needs: release-build
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: 设置SSH密钥（Gitee）
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: 配置Git用户信息（Gitee）
+      run: |
+        git config --global user.name "xiaomizhou"
+        git config --global user.email "2923597244@qq.com"
+
+    - name: 添加Gitee远程仓库
+      run: |
+        git commit -m "${{ github.event.head_commit.message }}!"
+        git remote add gitee git@gitee.com:qinjielove/MZAPI-python.git
+
+    - name: 同步代码到Gitee
+      run: |
+        git push gitee master
