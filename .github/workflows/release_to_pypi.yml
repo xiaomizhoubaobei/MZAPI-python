@@ -94,7 +94,6 @@ jobs:
 
     - name: 添加Gitcode远程仓库
       run: |
-        git commit -m "${{ github.event.head_commit.message }}!"
         git remote add gitcode git@gitcode.com:xiaomizhou/MZAPI-python.git
 
     - name: 同步代码到Gitcode
@@ -120,7 +119,6 @@ jobs:
 
     - name: 添加Gitee远程仓库
       run: |
-        git commit -m "${{ github.event.head_commit.message }}!"
         git remote add gitee git@gitee.com:qinjielove/MZAPI-python.git
 
     - name: 同步代码到Gitee
