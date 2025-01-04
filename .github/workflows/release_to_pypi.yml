@@ -103,10 +103,6 @@ jobs:
       run: |
         git remote add gitcode git@gitcode.com:xiaomizhou/MZAPI-python.git
 
-    - name: 确保代码库是完整的（Gitcode）
-      run: |
-        git fetch --unshallow
-
     - name: 同步代码到Gitcode
       run: |
         git push gitcode master
@@ -160,7 +156,7 @@ jobs:
       - name: 接受 Codeup 主机密钥
         run: |
           echo -e "Host codeup.aliyun.comn\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-          ssh-keyscan gcodeup.aliyun.com >> ~/.ssh/known_hosts
+          ssh-keyscan codeup.aliyun.com >> ~/.ssh/known_hosts
 
       - name: 配置Git用户信息（Codeup）
         run: |
