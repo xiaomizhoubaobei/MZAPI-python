@@ -1,4 +1,4 @@
-name: 上传Python包
+name: 发布包到pypi和Github
 
 on:
   push:
