@@ -12,9 +12,9 @@ from MZAPI.sql import sql
 from opentelemetry import trace
 
 
-class Speed_8K:
+class Lite_8K:
     """
-    EightK 类用于与百度ERNIE-Speed-8K模型进行交互。
+    EightK 类用于与百度ERNIE-Novel-8K模型进行交互。
 
     初始化参数:
     :param client_name: 客户端名称
@@ -22,29 +22,30 @@ class Speed_8K:
     :param sk: 百度API的安全密钥
 
     主要方法:
-    - get_response: 发送请求到ERNIE-Speed-8K
+    - get_response: 发送请求到ERNIE-Novel-8K
     """
 
     def __init__(self, client_name, ak, sk):
         self.ip = PublicIPTracker().get_public_ip()
         self.ak = ak
         self.sk = sk
-        self.access_token = baiduauth.BaiduAuth(ak, sk).get_access_token()
+        self.access_token = baiduauth.BaiduAuth(ak, sk)
         self.log = LogHandler()
         self.headers = CustomRequestHeaders().reset_headers()
         self.sql = sql()
         self.apm_client = APMClient(
             client_name=client_name,
-            host_name="ERNIE-Speed-8K",
+            host_name="ERNIE-Novel-8K",
             token="kCrxvCIYEzhZfAHETXEB",
-            peer_service="ERNIE-Speed-8K",
+            peer_service="ERNIE-Novel-8K",
             peer_instance=" 180.97.107.95:443",
             peer_address=" 180.97.107.95",
             peer_ipv6="240e:ff:e020:934:0:ff:b0dc:3636",
-            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie_speed",
+            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-novel-8k",
             server_name="MZAPI",
         )
         self.tracer = self.apm_client.get_tracer()
+        self.access_token = self.access_token.get_access_token()
 
     def get_response(
         self,
@@ -79,10 +80,10 @@ class Speed_8K:
         :return: 包含响应数据的字典
 
         """
-        with self.tracer.start_as_current_span("ERNIE-Speed-8K") as span:
+        with self.tracer.start_as_current_span("ERNIE-Novel-8K") as span:
             url = (
-                "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie_speed?access_token="
-                +self. access_token
+                "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-novel-8k?access_token="
+                +self.access_token
             )
             payload = json.dumps(
                 {
@@ -154,7 +155,7 @@ class Speed_8K:
             current_span = trace.get_current_span()
             traceID = current_span.get_span_context().trace_id
             W = trace.span.format_trace_id(traceID)
-            self.log.start_process_log(response.json(), "ERNIE-Speed-8K", W)
+            self.log.start_process_log(response.json(), "ERNIE-Novel-8K", W)
             M = response.json()
             uuid1 = Request_id
             question = data
@@ -165,5 +166,5 @@ class Speed_8K:
                 "time": formatted_time,
                 "response": M,
             }
-            self.sql.get_response(uuid1, question, answer, W, self.ip, "ERNIE-Speed-8K")
+            self.sql.get_response(uuid1, question, answer, W, self.ip, "ERNIE-Novel-8K")
             return X

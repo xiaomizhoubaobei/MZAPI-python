@@ -29,7 +29,7 @@ class Lite_8K:
         self.ip = PublicIPTracker().get_public_ip()
         self.ak = ak
         self.sk = sk
-        self.access_token = baiduauth.BaiduAuth(ak, sk)
+        self.access_token = baiduauth.BaiduAuth(ak, sk).get_access_token()
         self.log = LogHandler()
         self.headers = CustomRequestHeaders().reset_headers()
         self.sql = sql()
@@ -80,10 +80,9 @@ class Lite_8K:
 
         """
         with self.tracer.start_as_current_span("ERNIE-Lite-Pro-128K") as span:
-            access_token = self.access_token.get_access_token()
             url = (
                 "https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-lite-pro-128k?access_token="
-                + access_token
+                + self.access_token
             )
             payload = json.dumps(
                 {
@@ -151,7 +150,7 @@ class Lite_8K:
             span.set_attribute("question", data)
             span.set_attribute("API_key", self.ak)
             span.set_attribute("secret_key", self.sk)
-            span.set_attribute("access_token", access_token)
+            span.set_attribute("access_token", self.access_token)
             current_span = trace.get_current_span()
             traceID = current_span.get_span_context().trace_id
             W = trace.span.format_trace_id(traceID)
