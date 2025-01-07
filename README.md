@@ -1,5 +1,6 @@
 # 米粥API (MZAPI)
 [![PyPI version](https://badge.fury.io/py/MZAPI.svg)](https://pypi.org/project/MZAPI/)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2FMZAPI-python.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2FMZAPI-python?ref=badge_shield)
 
 ## 简介
 

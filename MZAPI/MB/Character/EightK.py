@@ -1,9 +1,9 @@
 from MZAPI.MB.base_ernie_model import BaseERNIEModel
 
 
-class EightK_preview:
+class EightK:
     """
-    EightK_preview 类用于与百度ERNIE 4.0 8K-preview模型进行交互。
+    EightK 类用于与百度ERNIE-Character-8K模型进行交互。
 
     初始化参数:
     :param client_name: 客户端名称
@@ -11,13 +11,13 @@ class EightK_preview:
     :param sk: 百度API的安全密钥
 
     主要方法:
-    - get_response: 发送请求到ERNIE 4.0 8K-preview模型并获取响应
+    - get_response: 发送请求到ERNIE-Character-8K模型并获取响应
     """
 
     def __init__(self, client_name, ak, sk):
-            host_name="ERNIE-4.0-8K-preview"
-            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-4.0-8k-preview"
-            self.M =BaseERNIEModel(client_name, host_name, ak, sk, http_host)
+            host_name="ERNIE-Character-8K"
+            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-char-8k"
+            self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk)
 
     def get_response(
         self,
