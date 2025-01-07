@@ -8,7 +8,7 @@ from MZAPI.KVS import LogHandler
 from MZAPI.LOG import PublicIPTracker
 from MZAPI.MB import baiduauth
 from MZAPI.headers import CustomRequestHeaders
-from MZAPI.sql import sql
+from MZAPI.sql import SqlRequest
 from opentelemetry import trace
 
 
@@ -45,7 +45,7 @@ class BaseERNIEModel:
         self.access_token = baiduauth.BaiduAuth(ak, sk)
         self.log = LogHandler()
         self.headers = CustomRequestHeaders().reset_headers()
-        self.sql = sql()
+        self.sql = SqlRequest()
         self.apm_client = APMClient(
             client_name=client_name,
             host_name=self.host_name,
