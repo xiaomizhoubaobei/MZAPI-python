@@ -1,5 +1,6 @@
 # 米粥API (MZAPI)
 [![PyPI version](https://badge.fury.io/py/MZAPI.svg)](https://pypi.org/project/MZAPI/)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2FMZAPI-python.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2FMZAPI-python?ref=badge_shield)
 
 ## 简介
 
@@ -40,3 +41,6 @@ MZAPI采用 [GNU许可证](LICENSE)。
 - 改进文档和示例
 
 如果你对项目感兴趣，欢迎成为贡献者！更多信息请查看[贡献指南](https://github.com/xiaomizhoubaobei/MZAPI/blob/master/CONTRIBUTING.md)。
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2FMZAPI-python.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fxiaomizhoubaobei%2FMZAPI-python?ref=badge_large)
