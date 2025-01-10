@@ -14,10 +14,10 @@ class Lite_8K:
     - get_response: 发送请求到ERNIE-Lite-8K
     """
 
-    def __init__(self, client_name, ak, sk):
+    def __init__(self, client_name, ak, sk, token=None):
             host_name="ERNIE-Lite-8K"
             http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-lite-8k"
-            self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk)
+            self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk, token)
 
 
     def get_response(

@@ -14,10 +14,10 @@ class EightK_preview:
     - get_response: 发送请求到ERNIE 3.5 8K-preview模型并获取响应
     """
 
-    def __init__(self, client_name, ak, sk):
+    def __init__(self, client_name, ak, sk, token=None):
             host_name="ERNIE-3.5-8K-preview"
             http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-8k-preview"
-            self.M = BaseERNIEModel(client_name, host_name, ak, sk, http_host)
+            self.M = BaseERNIEModel(client_name, host_name, ak, sk, http_host,token)
 
     def get_response(
         self,

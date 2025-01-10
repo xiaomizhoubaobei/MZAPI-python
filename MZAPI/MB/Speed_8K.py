@@ -14,10 +14,10 @@ class Speed_8K:
     - get_response: 发送请求到ERNIE-Speed-8K
     """
 
-    def __init__(self, client_name, ak, sk):
+    def __init__(self, client_name, ak, sk, token=None):
             host_name="ERNIE-Speed-8K"
             http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie_speed"
-            self.M = BaseERNIEModel(client_name, ak, sk, host_name, http_host)
+            self.M = BaseERNIEModel(client_name, ak, sk, host_name, http_host,token)
 
     def get_response(
         self,

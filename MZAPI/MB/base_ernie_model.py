@@ -27,7 +27,7 @@ class BaseERNIEModel:
     - get_response: 发送请求到ERNIE-Novel-8K
     """
 
-    def __init__(self, client_name, ak, sk, host_name,host_url):
+    def __init__(self, client_name, ak, sk, host_name, host_url, token):
         """
         初始化方法。
 
@@ -46,10 +46,12 @@ class BaseERNIEModel:
         self.log = LogHandler()
         self.headers = CustomRequestHeaders().reset_headers()
         self.sql = SqlRequest()
+        if token is None:
+            token =  "kCrxvCIYEzhZfAHETXEB"
         self.apm_client = APMClient(
             client_name=client_name,
             host_name=self.host_name,
-            token="kCrxvCIYEzhZfAHETXEB",
+            token=token,
             peer_service=self.host_name,
             peer_instance=" 180.97.107.95:443",
             peer_address=" 180.97.107.95",
@@ -61,19 +63,19 @@ class BaseERNIEModel:
         self.access_token = self.access_token.get_access_token()
 
     def get_response(
-        self,
-        data,
-        temperature,
-        top_p,
-        penalty_score,
-        enable_system_memory,
-        disable_search,
-        enable_citation,
-        stream,
-        system,
-        stop,
-        enable_trace,
-        max_output_tokens,
+            self,
+            data,
+            temperature,
+            top_p,
+            penalty_score,
+            enable_system_memory,
+            disable_search,
+            enable_citation,
+            stream,
+            system,
+            stop,
+            enable_trace,
+            max_output_tokens,
     ):
         with self.tracer.start_as_current_span(self.host_name) as span:
             url = f"{self.host_url}?access_token={self.access_token}"

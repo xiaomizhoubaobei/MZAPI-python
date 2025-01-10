@@ -14,10 +14,10 @@ class onetwentyeightk:
     - get_response: 发送请求到ERNIE 3.5 128K模型并获取响应
     """
 
-    def __init__(self, client_name, ak, sk):
+    def __init__(self, client_name, ak, sk, token=None):
             host_name="ERNIE-3.5-128K"
             http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-128K"
-            self.M = BaseERNIEModel(client_name, ak, sk, host_name,http_host)
+            self.M = BaseERNIEModel(client_name, ak, sk, host_name,http_host, token)
 
     def get_response(
         self,

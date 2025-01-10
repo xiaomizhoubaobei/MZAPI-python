@@ -14,10 +14,10 @@ class FictionalEightK:
     - get_response: 发送请求到ERNIE-Character-8K模型并获取响应
     """
 
-    def __init__(self, client_name, ak, sk):
+    def __init__(self, client_name, ak, sk, token=None):
             host_name="ERNIE-Character-Fictional-8K-Preview"
             http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-char-fiction-8k-preview"
-            self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk)
+            self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk, token)
 
     def get_response(
         self,

@@ -14,10 +14,10 @@ class EightK_latest:
     - get_response: 发送请求到ERNIE 4.0 8K-Latest模型并获取响应
     """
 
-    def __init__(self, client_name, ak, sk):
+    def __init__(self, client_name, ak, sk, token=None):
             host_name="ERNIE-4.0-8K-Latest"
             http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-4.0-8k-latest"
-            self.M = BaseERNIEModel(client_name, host_name, ak, sk, http_host)
+            self.M = BaseERNIEModel(client_name, host_name, ak, sk, http_host, token)
 
     def get_response(
         self,
