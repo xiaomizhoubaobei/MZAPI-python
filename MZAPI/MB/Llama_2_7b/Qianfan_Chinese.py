@@ -1,9 +1,9 @@
 from MZAPI.MB.base_ernie_model import BaseERNIEModel
 
 
-class Lite_128K:
+class Qianfan_Chinese:
     """
-    EightK 类用于与百度ERNIE-Lite-Pro-128K模型进行交互。
+    Qianfan_Chinese类用于与百度Qianfan-Chines-Llama-2-7B模型进行交互。
 
     初始化参数:
     :param client_name: 客户端名称
@@ -16,7 +16,7 @@ class Lite_128K:
 
     def __init__(self, client_name, ak, sk,token=None):
             host_name="ERNIE-Lite-Pro-128K"
-            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-lite-pro-128k"
+            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/qianfan_chinese_llama_2_7b"
 
             self.M =BaseERNIEModel(client_name, ak, sk, host_name,http_host, token)
 

@@ -1,9 +1,9 @@
 from MZAPI.MB.base_ernie_model import BaseERNIEModel
 
 
-class Lite_128K:
+class Mixtral_7B_Instruct:
     """
-    EightK 类用于与百度ERNIE-Lite-Pro-128K模型进行交互。
+    Mixtral_7B_Instruct类用于与百度Mixtral-7B-Instruct模型进行交互。
 
     初始化参数:
     :param client_name: 客户端名称
@@ -11,12 +11,12 @@ class Lite_128K:
     :param sk: 百度API的安全密钥
 
     主要方法:
-    - get_response: 发送请求到ERNIE-Lite-Pro-128K
+    - get_response: 发送请求到Mixtral-8x7B-Instruct模型并获取响应
     """
 
     def __init__(self, client_name, ak, sk,token=None):
-            host_name="ERNIE-Lite-Pro-128K"
-            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-lite-pro-128k"
+            host_name="Mixtral-7B-Instruct"
+            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/mixtral_7b_instruct"
 
             self.M =BaseERNIEModel(client_name, ak, sk, host_name,http_host, token)
 
