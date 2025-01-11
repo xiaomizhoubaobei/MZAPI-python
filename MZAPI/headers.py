@@ -1,4 +1,4 @@
-import random
+import secrets
 
 
 class CustomRequestHeaders:
@@ -60,13 +60,13 @@ class CustomRequestHeaders:
     def reset_headers(self):
         # 重置请求头为默认值
         self.headers = {
-            "User-Agent": random.choice(self.user_agents),
+            "User-Agent": secrets.choice(self.user_agents),
             "Accept": "image/avif,image/webp,image/png,image/svg+xml,image/*;q=0.8,*/*;q=0.5",
             "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
             "Accept-Encoding": "gzip, deflate, br, zstd",
             "DNT": "1",
             "Sec-GPC": "1",
-            "Referer": random.choice(self.Referer),
+            "Referer": secrets.choice(self.Referer),
             "Sec-Fetch-Mode": "no-cors",
             "Sec-Fetch-Site": "same-origin",
             "Connection": "keep-alive",

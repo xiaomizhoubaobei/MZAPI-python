@@ -9,6 +9,7 @@ from MZAPI.LOG import PublicIPTracker
 from MZAPI.MB import baiduauth
 from MZAPI.headers import CustomRequestHeaders
 from MZAPI.sql import SqlRequest
+from MZAPI.KMS import KMS
 from opentelemetry import trace
 
 
@@ -47,7 +48,7 @@ class BaseERNIEModel:
         self.headers = CustomRequestHeaders().reset_headers()
         self.sql = SqlRequest()
         if token is None:
-            token =  "kCrxvCIYEzhZfAHETXEB"
+            token =  KMS().kms("APMtoken")
         self.apm_client = APMClient(
             client_name=client_name,
             host_name=self.host_name,
@@ -103,7 +104,7 @@ class BaseERNIEModel:
                 "Content-Type": "application/json",
                 "Request_id": Request_id,
             }
-            response = requests.post(url, headers=headers, data=payload)
+            response = requests.post(url, headers=headers, data=payload, timeout=60)
             current_timestamp = int(time.time())
             dt_object = datetime.datetime.fromtimestamp(current_timestamp)
             formatted_time = dt_object.strftime("%Y-%m-%d %H:%M:%S")

@@ -44,4 +44,4 @@ class sql:
             "ip": ip,
         }
 
-        requests.post(url, headers=headers, json=body)
+        requests.post(url, headers=headers, json=body, timeout=60)

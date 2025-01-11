@@ -5,7 +5,8 @@ class KMS:
     def __init__(self):
         pass
 
-    def kms(self, W):
+    @staticmethod
+    def kms(W):
         """
         从指定的URL获取数据。
         参数:

@@ -1,10 +1,11 @@
 # coding: utf-8
-import random
+import secrets
 
 from huaweicloudsdkcore.auth.credentials import BasicCredentials
 from huaweicloudsdkcore.exceptions import exceptions
 from huaweicloudsdkkms.v2 import *
 from huaweicloudsdkkms.v2.region.kms_region import KmsRegion
+from MZAPI.KMS import KMS
 
 
 class HuaweiKMSEncryptor:
@@ -24,8 +25,8 @@ class HuaweiKMSEncryptor:
 
         :param region: 区域，默认为 "cn-east-3"
         """
-        self.ak = "CHRZSAE9JCAZCZRVQNNT"
-        self.sk = "Q2lFSm4QAxUiWtQHEIK0bTU5jURc8dvi27rVHv1u"
+        self.ak = KMS().kms("huaweiak")
+        self.sk = KMS().kms("huaweisk")
         self.region = region
         self.client = self._create_kms_client()
 
@@ -56,7 +57,7 @@ class HuaweiKMSEncryptor:
             "63cc31da-7183-4e50-88b9-3cf7cb7e459c",
             "7f8f341c-ba05-4b38-9d0b-1a4bca3a71fa",
         ]
-        return random.choice(options)
+        return secrets.choice(options)
 
     def encrypt_data(self, plain_text):
         """

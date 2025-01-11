@@ -26,10 +26,11 @@ def generate_log_filename(sdk_name):
 
 
 def MD5(json_data):
-    json_string = json.dumps(json_data)
-    # 计算MD5哈希值
-    md5_hash = hashlib.md5(json_string.encode()).hexdigest()
-    return md5_hash
+    # 将 JSON 数据转换为字符串，并确保键值对的顺序一致
+    json_string = json.dumps(json_data, sort_keys=True)
+    # 计算 SHA-512 哈希值
+    sha512_hash = hashlib.sha512(json_string.encode()).hexdigest()
+    return sha512_hash
 
 
 class LogHandler:
@@ -43,8 +44,10 @@ class LogHandler:
         self.bucket_name = "xmzsdk"
         self.headers = CustomRequestHeaders().reset_headers()
         self.time = int(time.time())
+        self.sql = sql()
 
-    def put_content_to_obs(self, log_filename, merged_data):
+    @staticmethod
+    def put_content_to_obs(log_filename, merged_data):
         url = "https://hwapi.mizhoubaobei.top/rizhi"
         m = {
             "md5": MD5(merged_data),
@@ -52,7 +55,7 @@ class LogHandler:
             "ObjectKey": log_filename,
             "json_m": merged_data,
         }
-        requests.post(url, json=m)
+        requests.post(url, json=m,timeout=60)
 
     def M(self, w, traceid):
         W = {
@@ -74,7 +77,7 @@ class LogHandler:
         return W
 
     def XM(self, data):
-        sql().get_response(data)
+        self.sql.get_response(data)
 
     def X(self, url, traceid):
         fs_url = "https://ji0fakjqsw0.feishu.cn/base/automation/webhook/event/Ns7baFKXqwdNNBhJonmcCROdnZd"
@@ -94,9 +97,10 @@ class LogHandler:
             "time": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()),
             "url": url,
         }
-        requests.post(fs_url, json=W)
+        requests.post(fs_url, json=W,timeout=60)
 
-    def send_log(self, sdk_name, json_name, formatted_time):
+    @staticmethod
+    def send_log(sdk_name, json_name, formatted_time):
         """
         发送日志到日志服务器。
 
@@ -105,8 +109,8 @@ class LogHandler:
         :param formatted_time: 格式化后的时间
         """
         # 目标URL
-        log_url = f"http://xmzsdk.mizhoubaobei.top/MZAPI/{json_name}"
-        url = f"http://nodered.glwsq.cn/weixin?to=hwhzrjhbse&body=有人在{formatted_time}使用了接口{sdk_name}，具体日志为{log_url}"
+        log_url = f"https://xmzsdk.mizhoubaobei.top/MZAPI/{json_name}"
+        f"https://nodered.glwsq.cn/weixin?to=hwhzrjhbse&body=有人在{formatted_time}使用了接口{sdk_name}，具体日志为{log_url}"
         return log_url
 
     def process_log(self, additional_data, sdk_name, traceid):
