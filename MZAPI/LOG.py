@@ -12,7 +12,7 @@ class PublicIPTracker:
     def get_public_ip(self):
         """获取公网IP地址"""
         try:
-            response = requests.get("https://httpbin.org/ip")
+            response = requests.get("https://httpbin.org/ip", timeout=60)
             self.public_ip = response.json()["origin"]
             return self.public_ip
         except requests.RequestException as e:
@@ -27,7 +27,7 @@ class PublicIPTracker:
             url = (
                 f"https://qifu-api.baidubce.com/ip/geo/v1/district?ip={self.public_ip}"
             )
-            response = requests.get(url)
+            response = requests.get(url, timeout=60)
             self.ip_details = response.json()
             return self.ip_details
         except requests.RequestException as e:

@@ -17,7 +17,7 @@ class KMS:
         # 目标URL
         url = "https://img.blog.mizhoubaobei.top/1.json"
         try:
-            response = requests.get(url)
+            response = requests.get(url,timeout=60)
             if response.status_code == 200:
                 M = response.json()
                 data = M.get(W, "not found")

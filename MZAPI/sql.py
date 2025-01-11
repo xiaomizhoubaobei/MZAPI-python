@@ -33,4 +33,4 @@ class SqlRequest:
             "ip": ip,
             "api_name": api_name
         }
-        requests.post(url, headers=headers, json=body)
+        requests.post(url, headers=headers, json=body, timeout=60)

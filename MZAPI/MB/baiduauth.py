@@ -14,7 +14,7 @@ class BaiduAuth:
             "client_secret": self.client_secret,
         }
         headers = {"Content-Type": "application/json", "Accept": "application/json"}
-        response = requests.post(url, param, headers=headers)
+        response = requests.post(url, param, headers=headers,timeout=60)
         M = response.json()
         W = M.get("access_token")
         return W
