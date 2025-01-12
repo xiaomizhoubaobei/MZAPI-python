@@ -3,7 +3,7 @@ from MZAPI.MB.base_ernie_model import BaseERNIEModel
 
 class Qianfan_Chinese:
     """
-    Qianfan_Chinese类用于与百度Qianfan-Chines-Llama-2-7B模型进行交互。
+    Qianfan_Chinese类用于与百度Qianfan-Chines-Llama-2-12B-v1模型进行交互。
 
     初始化参数:
     :param client_name: 客户端名称
@@ -11,12 +11,12 @@ class Qianfan_Chinese:
     :param sk: 百度API的安全密钥
 
     主要方法:
-    - get_response: 发送请求到Qianfan-Chinese-Llama-2-7B模型并获取响应
+    - get_response: 发送请求到Qianfan-Chinese-Llama-2-13B-v1模型并获取响应
     """
 
     def __init__(self, client_name, ak, sk,token=None):
-            host_name="Qianfan-Chinese-Llama-2-7B"
-            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/qianfan_chinese_llama_2_7b"
+            host_name="Qianfan-Chinese-Llama-2-13B-v1"
+            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/qianfan_chinese_llama_2_13b"
 
             self.M =BaseERNIEModel(client_name, ak, sk, host_name,http_host, token)
 

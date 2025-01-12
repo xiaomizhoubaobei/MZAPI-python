@@ -59,6 +59,13 @@ jobs:
       with:
         packages-dir: dist/
 
+    - name: Upload package to Aliyun PyPI repository
+      run: |
+        twine upload --repository-url https://packages.aliyun.com/6729fb98ce1b60cfd800d18e/pypi/repo-wjdxf -u ${{secrets.USERNAME }} -p ${{ secrets.PASSWORD }} dist/MZAPI-${{ env.version }}-py3-none-any.whl
+      env:
+        ALIYUN_PYPI_USERNAME: ${{ secrets.USERNAME }}
+        ALIYUN_PYPI_PASSWORD: ${{ secrets.PASSWORD }}
+
     - name: Create GitHub release
       uses: softprops/action-gh-release@v2
       with:
