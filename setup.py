@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as f:
     long_description = f.read()
 setup(
     name="MZAPI",
-    version="0.3.1",
+    version="0.3.2",
     description="米粥SDK",
     license_expressions=["MIT"],
     packages=find_packages(),
