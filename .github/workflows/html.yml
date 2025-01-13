@@ -1,8 +1,12 @@
 name: "Pyarch Pages"
 
 on:
-  [pull_request]:master
-  push:master
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
 
 permissions:
   contents: read
