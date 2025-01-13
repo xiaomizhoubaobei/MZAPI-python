@@ -21,7 +21,6 @@ jobs:
   pyarch-pages:
     runs-on: ubuntu-latest
     steps:
-      # assumption: the workflow is running in the python package repo
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
@@ -29,7 +28,6 @@ jobs:
       - name: Generate HTML
         uses: kislerdm/pyarch@v0.0.2
         with:
-          # Change to the path with the package's source files
           input: MZAPI/
           title: "MZAPI的包架构"
           header: "MZAPI的包架构"
@@ -37,6 +35,7 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -45,5 +44,7 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v4
         with:
-            token: ${{ secrets.TOKEN }}
-            artifact_name: github-pages
+          token: ${{ secrets.GITHUB_TOKEN }}
+          repository: ${{ github.repository }}
+          branch: gh-pages  # 指定分支为 gh-pages
+          folder: public  # 指定部署的文件夹
