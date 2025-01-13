@@ -30,7 +30,7 @@ jobs:
         uses: kislerdm/pyarch@v0.0.2
         with:
           # Change to the path with the package's source files
-          input: MZAPI
+          input: /MZAPI
           title: "MZAPI的包架构"
           header: "MZAPI的包架构"
           output: public
