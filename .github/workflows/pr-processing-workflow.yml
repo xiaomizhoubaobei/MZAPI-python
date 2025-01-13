@@ -1,0 +1,54 @@
+name: PR自动化处理工作流
+
+on: [pull_request]
+
+jobs:
+  coverage:
+    runs-on: ubuntu-latest
+
+    permissions:
+      # 根据需要添加必要的权限，例如对PR的评论权限等
+      pull-requests: write
+      checks: write
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'  # 根据项目需要选择合适的Python版本
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install coverage pytest  # 假设你使用pytest生成覆盖率报告
+
+    - name: Run tests and generate coverage report
+      run: |
+        coverage run -m pytest  # 运行测试并生成覆盖率报告
+        coverage xml  # 将覆盖率报告转换为XML格式
+
+    - name: Publish coverage report to PR
+      uses: orgoro/coverage@v3.2
+      with:
+        coverageFile: coverage.xml  # 指定覆盖率报告文件路径
+        token: ${{ secrets.TOKEN }}  # 使用GitHub令牌进行身份验证
+
+  createClassDiagram:
+    name: Create Diagram
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: miketrebilcock/python-code-visualiser@v2
+      with:
+        gh-token: ${{ secrets.TOKEN }}
+
+  security_checks:
+    runs-on: ubuntu-latest
+    name: Execute the pycharm-security action
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run PyCharm Security
+      uses: tonybaloney/pycharm-security@master

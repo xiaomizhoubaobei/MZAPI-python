@@ -1,0 +1,42 @@
+name: "Pyarch Pages"
+
+on:
+  [pull_request]:master
+  push:master
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  pyarch-pages:
+    runs-on: ubuntu-latest
+    steps:
+      # assumption: the workflow is running in the python package repo
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Generate HTML
+        uses: kislerdm/pyarch@v0.0.2
+        with:
+          # Change to the path with the package's source files
+          input: MZAPI
+          title: "MZAPI的包架构"
+          header: "MZAPI的包架构"
+          output: public
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'public'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
