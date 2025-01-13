@@ -46,6 +46,4 @@ jobs:
         uses: actions/deploy-pages@v4
         with:
             token: ${{ secrets.TOKEN }}
-            repository: ${{ github.repository }}
-            branch: ${{ github.ref }}
-            folder: public
+            artifact_name: github-pages
