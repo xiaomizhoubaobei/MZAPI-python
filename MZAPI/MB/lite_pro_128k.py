@@ -1,9 +1,9 @@
 from MZAPI.MB.base_ernie_model import BaseERNIEModel
 
 
-class qianfan:
+class Lite_128K:
     """
-    qianfan 类用于与百度Qianfan-BLOOMZ-7B-compressed模型进行交互。
+    EightK 类用于与百度ERNIE-Lite-Pro-128K模型进行交互。
 
     初始化参数:
     :param client_name: 客户端名称
@@ -11,13 +11,13 @@ class qianfan:
     :param sk: 百度API的安全密钥
 
     主要方法:
-    - get_response: 发送请求到Qianfan-BLOOMZ-7B-compressed模型并获取响应
+    - get_response: 发送请求到ERNIE-Lite-Pro-128K
     """
 
-    def __init__(self, client_name, ak, sk, token=None):
-        host_name="Qianfan-BLOOMZ-7B-compressed"
-        http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/qianfan_bloomz_7b_compressed"
-        self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk, token)
+    def __init__(self, client_name, ak, sk,token=None):
+        host_name="ERNIE-Lite-Pro-128K"
+        http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-lite-pro-128k"
+        self.M =BaseERNIEModel(client_name, ak, sk, host_name,http_host, token)
 
     def get_response(
         self,

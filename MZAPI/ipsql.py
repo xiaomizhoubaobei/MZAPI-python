@@ -2,7 +2,7 @@ import requests
 from MZAPI.headers import CustomRequestHeaders
 
 
-class sql:
+class SQL:
     def __init__(self):
         # 初始化sql类，创建一个CustomRequestHeaders实例
         self.headers = CustomRequestHeaders()

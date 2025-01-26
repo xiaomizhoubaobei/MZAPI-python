@@ -15,9 +15,9 @@ class seven_it:
     """
 
     def __init__(self, client_name, ak, sk, token=None):
-            host_name="ERNIE-Lite-8K"
-            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/gemma_7b_it"
-            self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk, token)
+        host_name="ERNIE-Lite-8K"
+        http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/gemma_7b_it"
+        self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk, token)
 
 
     def get_response(

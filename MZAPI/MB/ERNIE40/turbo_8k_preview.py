@@ -1,22 +1,21 @@
 from MZAPI.MB.base_ernie_model import BaseERNIEModel
 
 
-class qianfan:
+class Turbo_8K_Preview:
     """
-    qianfan 类用于与百度Qianfan-BLOOMZ-7B-compressed模型进行交互。
-
+    Turbo_8K_Preview 类用于与百度ERNIE-4.0-Turbo-8K-Preview模型进行交互。
     初始化参数:
     :param client_name: 客户端名称
     :param ak: 百度API的访问密钥
     :param sk: 百度API的安全密钥
 
     主要方法:
-    - get_response: 发送请求到Qianfan-BLOOMZ-7B-compressed模型并获取响应
+    - get_response: 发送请求到ERNIE-4.0-Turbo-8K-Preview模型并获取响应
     """
 
-    def __init__(self, client_name, ak, sk, token=None):
-        host_name="Qianfan-BLOOMZ-7B-compressed"
-        http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/qianfan_bloomz_7b_compressed"
+    def __init__(self, client_name, ak, sk,token=None):
+        host_name="ERNIE-4.0-Turbo-8K-Preview"
+        http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-4.0-turbo-8k-preview"
         self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk, token)
 
     def get_response(
@@ -35,7 +34,7 @@ class qianfan:
         max_output_tokens=None,
     ):
         """
-        发送请求到ERNIE 4.0 8K模型并获取响应。
+        发送请求到ERNIE-4.0-Turbo-8K-Preview模型并获取响应。
 
         :param data: 用户输入的数据 (必填)
         :param temperature: 控制生成文本的随机性 (选填)

@@ -3,14 +3,14 @@ import json
 import time
 import uuid
 import requests
-from MZAPI.APM import APMClient
-from MZAPI.KVS import LogHandler
-from MZAPI.LOG import PublicIPTracker
-from MZAPI.MB import baiduauth
+from opentelemetry import trace
+from MZAPI.apm import APMClient
+from MZAPI.kvs import LogHandler
+from MZAPI.log import PublicIPTracker
+from MZAPI.MB.baiduauth import BaiduAuth
 from MZAPI.headers import CustomRequestHeaders
 from MZAPI.sql import SqlRequest
-from MZAPI.KMS import KMS
-from opentelemetry import trace
+from MZAPI.kms import KMS
 
 
 class BaseERNIEModel:
@@ -43,7 +43,7 @@ class BaseERNIEModel:
         self.ip = PublicIPTracker().get_public_ip()
         self.ak = ak
         self.sk = sk
-        self.access_token = baiduauth.BaiduAuth(ak, sk)
+        self.access_token = BaiduAuth(ak, sk)
         self.log = LogHandler()
         self.headers = CustomRequestHeaders().reset_headers()
         self.sql = SqlRequest()

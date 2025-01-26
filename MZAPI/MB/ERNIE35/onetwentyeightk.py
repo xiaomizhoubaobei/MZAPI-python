@@ -15,9 +15,9 @@ class onetwentyeightk:
     """
 
     def __init__(self, client_name, ak, sk, token=None):
-            host_name="ERNIE-3.5-128K"
-            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-128K"
-            self.M = BaseERNIEModel(client_name, ak, sk, host_name,http_host, token)
+        host_name="ERNIE-3.5-128K"
+        http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-128K"
+        self.M = BaseERNIEModel(client_name, ak, sk, host_name,http_host, token)
 
     def get_response(
         self,

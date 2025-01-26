@@ -15,9 +15,9 @@ class onetwentyeightk_preview:
     """
 
     def __init__(self, client_name, ak, sk, token=None):
-            host_name="ERNIE-3.5-128K-Preview"
-            http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-128K-Preview"
-            self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk, token)
+        host_name="ERNIE-3.5-128K-Preview"
+        http_host="https://aip.baidubce.com/rpc/2.0/ai_custom/v1/wenxinworkshop/chat/ernie-3.5-128K-Preview"
+        self.M = BaseERNIEModel(client_name, host_name, http_host, ak, sk, token)
 
     def get_response(
         self,
